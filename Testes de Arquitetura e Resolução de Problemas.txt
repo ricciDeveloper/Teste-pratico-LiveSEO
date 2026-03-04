@@ -1,0 +1,85 @@
+6. Organização de Projeto
+
+Em um cenário de desenvolvimento fullstack do zero, começaria com os seguintes passos:
+
+Frontend (Vue)
+
+Estrutura de pastas para organização do front:
+
+frontend
+
+src
+
+assets
+
+components
+
+views
+
+router
+
+services
+
+App.vue
+
+main.js
+
+Motivo: Separação por responsabilidade de cada diretório do projeto, facilitando a escalabilidade, organização do código e manutenção futura. Components são reutilizáveis, views representam as páginas, services centralizam as requisições e o router organiza a navegação da aplicação.
+
+Backend (Node)
+
+Estrutura de pastas para organização do back:
+
+backend
+
+src
+
+controllers
+
+routes
+
+services
+
+models
+
+config
+
+database
+
+app.js
+
+server.js
+
+.env
+
+package.json
+
+Motivo: Organizei o backend em camadas (routes, controllers, services, etc.), fazendo a separação de responsabilidades. Pensando em legibilidade do código, isso facilita a execução de testes, manutenção e a escalabilidade do projeto como um todo.
+
+7. Cenário de Problema
+
+Para analisar a lentidão em uma tela de login, eu tomaria a seguinte abordagem:
+
+Analisar e identificar o gargalo da tela de login utilizando o DevTools, que traz informações como tempo de carregamento da página e tempo de requisição do login.
+
+Utilizaria como base para análise:
+
+Se a tela demora antes de clicar em login, provavelmente o gargalo está no frontend.
+
+Se a lentidão ocorre após o envio das credenciais, o gargalo pode estar no backend ou no banco de dados.
+
+Testaria também a velocidade de resposta do endpoint através do Postman (ou similar). Caso a resposta seja rápida, o problema provavelmente está no frontend.
+
+Se o problema for identificado no backend, pensaria como solução:
+
+Criar um índice no campo de login (email).
+
+Evitar carregar dados que não são necessários para o processo de autenticação.
+
+Se o gargalo for identificado no frontend, abordaria da seguinte maneira:
+
+Verificar a possibilidade de aplicar code splitting ou lazy loading para carregar somente o necessário.
+
+Analisar o tamanho dos arquivos carregados na tela de login, buscando oportunidades de minificação e/ou redução.
+
+Verificar o mounted do Vue, removendo requisições desnecessárias naquela página.
